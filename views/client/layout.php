@@ -17,13 +17,13 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="?controller=home&action=index">Home</a>
+                        <a class="nav-link" href="?controller=home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=shop&action=index">Shop</a>
+                        <a class="nav-link" href="?controller=shop">Shop</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?controller=blog&action=index">Blog</a>
+                        <a class="nav-link" href="?controller=blog">Blog</a>
                     </li>
                     </ul>
                 </div>

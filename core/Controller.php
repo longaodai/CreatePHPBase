@@ -1,10 +1,10 @@
 <?php
+namespace Core;
 
 class Controller{
     
     public function model($model){
-        require 'models/'.$model.'.php';
-        return new $model;
+        return require 'models/'.$model.'.php';
     }
 
     public function view($path, $data = []){

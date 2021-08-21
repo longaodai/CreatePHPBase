@@ -1,44 +1,55 @@
 <?php
+namespace Core;
+
 class App{
-    public $Controller = 'homeController';
-    public $Action = 'index';
+    public $controller = 'HomeController';
+    public $action = 'index';
+    public $controllerObject;
     
+
+    //Xử lý khởi tạo Controller và dùng action
     public function __construct(){
-        $Controller = $this->getController();
 
-        $Action = $this->getAction();
+        $controller = $this->getController();
+        $action = $this->getAction();
 
-        if(file_exists('controllers/'. $Controller .'.php')){
-            require 'controllers/'. $Controller .'.php';
-            $controllerObject = new $Controller;
+        if(file_exists('controllers/'. $controller .'.php')){
+            require 'controllers/'. $controller .'.php';
+            $controller = '\\Controllers\\' . $controller;
+            $this->controllerObject = new $controller;
         }
         else{
-            require 'controllers/homeController.php';
-            $controllerObject = new homeController;
+            require 'controllers/HomeController.php';
+            $this->controllerObject = new Controllers\HomeController;
         }
-        
-        if(method_exists($Controller, $Action)){
-            $controllerObject->$Action();
+
+        if(method_exists($this->controllerObject, $action)){
+            $this->controllerObject->$action();
         }
         else{
-            $controllerObject->index();
+            $this->controllerObject->index();
         }    
     }
 
+
+    //Hàm get Controller
     public function getController(){
         if(isset($_REQUEST['controller'])){
-            return $this->Controller = $_REQUEST['controller'] . 'Controller';
+
+            return $this->controller = ucfirst($_REQUEST['controller']) . 'Controller';
+
         }else{
-            return $this->Controller;
+            return $this->controller;
         }
     }
 
+    //Hàm get action
     public function getAction(){
         if(isset($_REQUEST['action'])){
-            return $this->Action = $_REQUEST['action'];
+            return $this->action = $_REQUEST['action'];
         }
         else{
-            return $this->Action;
+            return $this->action;
         }
     }
 }

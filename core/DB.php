@@ -1,4 +1,5 @@
 <?php
+namespace Core;
 
 class Database{
     
@@ -10,8 +11,8 @@ class Database{
 
     public function __construct(){
         try {
-            $this->db = new PDO("mysql:host=$this->servername;dbname=$this->databasename", $this->username, $this->password);
-            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->db = new \PDO("mysql:host=$this->servername;dbname=$this->databasename", $this->username, $this->password);
+            $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             // echo "Connected successfully";
         } 
         catch(PDOException $e) {

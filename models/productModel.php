@@ -1,13 +1,17 @@
 <?php
+namespace Models;
 
-class productModel extends Model{
+use Core\Model;
+
+class ProductModel extends Model{
     private $table = 'monhoc';
+    private $data;
 
     public function productAll(){
 
-        $data = $this->all($this->table);
+        $this->data = $this->all($this->table);
 
-        return $data;
+        return $this->data;
     }
 
     public function productFind($id){

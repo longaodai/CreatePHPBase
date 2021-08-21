@@ -1,4 +1,8 @@
 <?php
+namespace Core;
+
+use Core\Database;
+
 class Model extends Database{
 
     function all($table){

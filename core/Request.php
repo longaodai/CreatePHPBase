@@ -1,4 +1,10 @@
 <?php
+namespace Core;
+
+interface RequestParam{
+    public function all();
+}
+
 
 class Request{
 

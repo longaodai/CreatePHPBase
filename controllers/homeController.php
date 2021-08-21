@@ -1,28 +1,30 @@
 <?php
+namespace Controllers;
 
-class homeController extends Controller{
+use Core\Request;
+use Core\Controller;
+use Models\ProductModel;
+
+class HomeController extends Controller{
 
     protected $checkDependence;
 
-    // public function __construct(Request $request){
-    //     $this->checkDependence = $request;
-    // }
+    public function __construct(){
+        $this->checkDependence = new Request;
+    }
 
-    public function index(Request $request){
-        // $data = new Request;
-        $result = $request->all();
+    public function index(){
+        $this->model('ProductModel');
 
-        // $result = $this->checkDependence->all();
-        // $result = $data->all();
+        $data = new ProductModel;
 
-        echo $result['action'];
-        echo '<pre>';
-        print_r($result);
-        // $data = $this->model('productModel');
+        $result  = $data->productAll();
 
-        // $result  = $data->productAll();
+        return $this->view('client/layout', ['view' => 'home', 'result' => $result,]);
+    }
 
-        // return $this->view('client/layout', ['view' => 'home', 'result' => $result,]);
+    public function check(){
+        echo 'ok';
     }
 
     public function show(){

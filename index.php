@@ -5,4 +5,7 @@ require_once 'core/Controller.php';
 require_once 'core/Model.php';
 require_once 'core/Request.php';
 
-$App = new App;
+
+$App = new Core\App;
+
+
