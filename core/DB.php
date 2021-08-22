@@ -7,12 +7,15 @@ class Database{
     private $username = 'root';
     private $password = '';
     private $databasename = 'longstudy';
-    public $db;
+    private static $db;
 
     public function __construct(){
         try {
-            $this->db = new \PDO("mysql:host=$this->servername;dbname=$this->databasename", $this->username, $this->password);
-            $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            if(empty(self::$db)){
+                self::$db = new \PDO("mysql:host=$this->servername;dbname=$this->databasename", $this->username, $this->password);
+                self::$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            }
+            return self::$db;
             // echo "Connected successfully";
         } 
         catch(PDOException $e) {
@@ -21,10 +24,10 @@ class Database{
     }
 
     public function query($sql){
-        return $this->db->query($sql);
+        return self::$db->query($sql);
     }
 
     public function execute($sql){
-        return $this->db->exec($sql);
+        return self::$db->exec($sql);
     }
 }

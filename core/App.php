@@ -20,7 +20,7 @@ class App{
         }
         else{
             require 'controllers/HomeController.php';
-            $this->controllerObject = new Controllers\HomeController;
+            $this->controllerObject = new \Controllers\HomeController;
         }
 
         if(method_exists($this->controllerObject, $action)){
